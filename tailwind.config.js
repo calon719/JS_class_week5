@@ -1,5 +1,8 @@
 module.exports = {
-  purge: [],
+  purge: {
+    enabled: true,
+    content: ["./app/**/*.html", "./app/assets/style/**/*.scss", "./app/**/*.js", "./app/**/*.ejs"],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     container: {
