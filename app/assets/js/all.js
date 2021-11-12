@@ -103,7 +103,7 @@ function init() {
           <div class="absolute bg-primary text-white w-10 text-center rounded-r py-1 -top-4 left-0">${item.rate}</div>
           <div>
             <h2 class="font-bold text-2xl pb-1 mb-4 border-b-2">${item.name}</h2>
-            <p class="text-gray-500 mb-8">${item.description}</p>
+            <p class="text-gray-500 mb-8 break-words">${item.description}</p>
           </div>
           <div class="flex justify-between items-center">
             <p>
@@ -144,7 +144,7 @@ function areaFilter(e) {
           <div class="absolute bg-primary text-white w-10 text-center rounded-r py-1 -top-4 left-0">${item.rate}</div>
           <div>
             <h2 class="font-bold text-2xl pb-1 mb-4 border-b-2">${item.name}</h2>
-            <p class="text-gray-500 mb-8">${item.description}</p>
+            <p class="text-gray-500 mb-8 break-words">${item.description}</p>
           </div>
           <div class="flex justify-between items-center">
             <p>
