@@ -1,0 +1,102 @@
+---
+title: 旅遊套票
+layout: ./app/layout.ejs
+engine: ejs
+current: index
+---
+<section class="max-w-230 text-primary py-15 px-24 mt-30 mb-25 mx-auto rounded-xl shadow grid grid-cols-2 gap-x-4">
+  <div>
+    <img class="mb-5" src="https://i.imgur.com/iRssPpJ.png" alt="">
+    <img src="https://i.imgur.com/vJt0znH.png" alt="">
+  </div>
+  <div>
+
+    <form class="addTicket-form" action="">
+      <h1 class="text-2xl font-bold border-b-3 pb-1 mb-10"><span class="text-xl mx-1"><i
+            class="fas fa-plus-circle"></i></span>新增旅遊套票
+      </h1>
+      <div class="flex items-center mb-4">
+        <label class="mr-8 font-medium" for="ticketName">套票名稱</label>
+        <input class="border-b border-primary py-2 px-3 bg-gray-200 flex-grow" type="text" id="ticketName"
+          data-inputName="套票名稱" data-ticketInput="name" placeholder="請填寫套票名稱">
+      </div>
+      <div class="flex items-center mb-4">
+        <label class="mr-8 font-medium" for="ticketImgUrl">圖片網址</label>
+        <input class="border-b border-primary py-2 px-3 bg-gray-200 flex-grow" type="text" id="ticketImgUrl"
+          data-inputName="圖片網址" data-ticketInput="imgUrl" placeholder="請填寫圖片網址">
+      </div>
+      <div class="flex items-center mb-4">
+        <label class="mr-8 font-medium" for="ticketRegion">景點地區</label>
+        <select class="border-b border-primary py-2 px-3 bg-gray-200 flex-grow text-gray-500" id="ticketRegion"
+          data-inputName="景點地區" name="ticketRegion" data-ticketInput="area">
+          <option value="" disabled selected hidden>請選擇景點地區</option>
+          <option value="台北">台北</option>
+          <option value="台中">台中</option>
+          <option value="高雄">高雄</option>
+        </select>
+      </div>
+      <div class="flex items-center mb-4">
+        <label class="mr-8 font-medium" for="ticketPrice">套票金額</label>
+        <input class="border-b border-primary py-2 px-3 bg-gray-200 flex-grow" type="number" id="ticketPrice"
+          data-inputName="套票金額" data-ticketInput="price" placeholder="請填寫套票金額">
+      </div>
+      <div class="flex items-center mb-4">
+        <label class="mr-8 font-medium" for="ticketNum">套票組數</label>
+        <input class="border-b border-primary py-2 px-3 bg-gray-200 flex-grow" type="number" id="ticketNum"
+          data-inputName="套票組數" data-ticketInput="group" placeholder="請填寫套票組數">
+      </div>
+      <div class="flex items-center mb-4">
+        <label class="mr-8 font-medium" for="ticketRate">套票星級</label>
+        <input class="border-b border-primary py-2 px-3 bg-gray-200 flex-grow" type="number" id="ticketRate"
+          data-inputName="套票星級" data-ticketInput="rate" placeholder="請填寫套票星級">
+      </div>
+      <div class="flex mb-6">
+        <label class="mt-2 mr-8 font-medium" for="ticketDescription">套票描述</label>
+        <textarea class="border-b border-primary py-2 px-3 bg-gray-200 flex-grow h-28" type="text" data-inputName="套票描述"
+          id="ticketDescription" data-ticketInput="description" placeholder="請填寫套票描述（限 100 字）"></textarea>
+      </div>
+      <div class="flex justify-end">
+        <button
+          class="bg-primary rounded-5 text-xl text-white px-10 py-2.5 hover:opacity-70 transition-opacity duration-500"
+          id="addTicketBtn">新增套票</button>
+      </div>
+    </form>
+</section>
+
+<section class="bg-gray-100">
+  <div class="container pt-14 pb-30">
+    <div class="ml-24 flex items-center mb-13">
+      <select name="" class="searchRegion w-3/12 text-gray-500 bg-white border border-gray-400 rounded px-3 py-2">
+        <option value="地區搜尋" disabled selected hidden>地區搜尋</option>
+        <option value="全部">全部地區</option>
+        <option value="台北">台北</option>
+        <option value="台中">台中</option>
+        <option value="高雄">高雄</option>
+      </select>
+      <p class="text-gray-500 ml-8">本次搜尋共 <span class="searchResultNum">6</span> 筆資料</p>
+    </div>
+
+    <ul class="ticketList grid grid-cols-3 gap-x-8 gap-y-9">
+      <li class="bg-white transform hover:scale-105 transition-all duration-700 ease-out rounded relative shadow">
+        <div class="bg-secondary text-white text-xl rounded-r py-2 px-5 absolute -top-5 left-0">台北
+        </div>
+        <div class="h-45 bg-no-repeat bg-cover bg-center rounded-t"
+          style="background-image: url('https://i.imgur.com/QXa1fMZ.png');"></div>
+        <div class="relative text-primary pt-5 pb-4 px-5">
+          <div class="absolute bg-primary text-white rounded-r py-1 px-2 -top-4 left-0">8.6</div>
+          <h2 class="font-bold text-2xl pb-1 mb-4 border-b-2">綠島自由行套裝行程</h2>
+          <p class="text-gray-500 mb-8">
+            嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。</p>
+          <div class="flex justify-between">
+            <p>
+              <i class="fas fa-exclamation-circle"></i>
+              <span class="font-medium">剩下最後 8 組</span>
+            </p>
+            <p class="font-medium flex">TWD<span class="text-4xl ml-1">$1,280</span></p>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
