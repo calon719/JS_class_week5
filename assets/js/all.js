@@ -42,7 +42,7 @@ function checkInput(e) {
   addTicketInputs.forEach(function (item) {
     if (item.getAttribute('data-ticketInput') == 'rate') {
       // 檢查 套票星級
-      if (item.value > 10 || item.value < 1) {
+      if (parseInt(item.value) > 10 || parseInt(item.value) < 1) {
         alert('「套票星級」為 1 ~10 分');
         checkStatus = false;
       }
@@ -65,9 +65,10 @@ function checkInput(e) {
 
 ; // 新增套票
 // 新增資料到 物件 data
+// 將資料呈現到網頁畫面
 
 function addTicket(checkStatus) {
-  if (checkStatus === true) {
+  if (checkStatus) {
     var obj = {};
     addTicketInputs.forEach(function (item) {
       obj.id = data.length;
