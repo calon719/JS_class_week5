@@ -75,10 +75,15 @@ function addTicket(checkStatus) {
 
     addTicketInputs.forEach(function (item) {
       obj.id = data.length;
-      obj[item.getAttribute('data-ticketInput')] = item.value;
+      if (item.getAttribute('type') === 'number') {
+        obj[item.getAttribute('data-ticketInput')] = parseInt(item.value);
+        item.value = '';
+      } else {
+        obj[item.getAttribute('data-ticketInput')] = item.value;
+        item.value = '';
+      };
     });
     data.push(obj);
-    console.log(data.length);
     init();
   } else {
     return;
