@@ -74,13 +74,12 @@ function addTicket(checkStatus) {
 
       if (item.getAttribute('type') === 'number') {
         obj[item.getAttribute('data-ticketInput')] = parseInt(item.value);
-        item.value = '';
       } else {
         obj[item.getAttribute('data-ticketInput')] = item.value;
-        item.value = '';
       }
 
       ;
+      item.value = '';
     });
     data.push(obj);
     init();
