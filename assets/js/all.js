@@ -63,8 +63,7 @@ function checkInput(e) {
   addTicket(checkStatus);
 }
 
-; // 新增套票
-// 新增資料到 物件 data
+; // 新增資料到 物件 data
 // 將資料呈現到網頁畫面
 
 function addTicket(checkStatus) {
@@ -83,7 +82,7 @@ function addTicket(checkStatus) {
       item.value = '';
     });
     data.push(obj);
-    init();
+    areaFilter();
   } else {
     return;
   }
@@ -97,7 +96,7 @@ function init() {
   var resultNum = 0;
   data.forEach(function (item) {
     resultNum++;
-    str += "<li class=\"flex flex-col bg-white transform hover:scale-105 transition-all duration-700 ease-out rounded relative shadow\">\n        <div class=\"bg-secondary text-white text-xl rounded-r py-2 px-5 absolute -top-5 left-0\">".concat(item.area, "\n        </div>\n        <div class=\"h-45 bg-no-repeat bg-cover bg-center rounded-t\"\n          style=\"background-image: url('").concat(item.imgUrl, "');\"></div>\n        <div class=\"relative text-primary pt-5 pb-4 px-5 flex flex-grow flex-col justify-between\">\n          <div class=\"absolute bg-primary text-white w-10 text-center rounded-r py-1 -top-4 left-0\">").concat(item.rate, "</div>\n          <div>\n            <h2 class=\"font-bold text-2xl pb-1 mb-4 border-b-2\">").concat(item.name, "</h2>\n            <p class=\"text-gray-500 mb-8 break-words\">").concat(item.description, "</p>\n          </div>\n          <div class=\"flex justify-between items-center\">\n            <p>\n              <i class=\"fas fa-exclamation-circle\"></i>\n              <span class=\"font-medium\">\u5269\u4E0B\u6700\u5F8C ").concat(item.group, " \u7D44</span>\n            </p>\n            <p class=\"font-medium flex items-center\">TWD<span class=\"text-4xl ml-1\">$").concat(item.price, "</span></p>\n          </div>\n        </div>\n      </li>");
+    str += addList(item);
   });
   cardList.innerHTML = str;
   searchResultNum.textContent = resultNum;
@@ -106,10 +105,10 @@ function init() {
 init(); // 篩選資料
 // 篩選後會顯示『搜尋資料為 ? 筆』
 
-function areaFilter(e) {
-  var inputValue = e.target.value;
+function areaFilter() {
+  var inputValue = searchAreaInput.value;
 
-  if (inputValue === '全部') {
+  if (inputValue === '' || inputValue === '全部') {
     init();
   } else {
     var str = '';
@@ -117,7 +116,7 @@ function areaFilter(e) {
     data.forEach(function (item) {
       if (item.area === inputValue) {
         resultNum++;
-        str += "<li class=\"flex flex-col bg-white transform hover:scale-105 transition-all duration-700 ease-out rounded relative shadow\">\n        <div class=\"bg-secondary text-white text-xl rounded-r py-2 px-5 absolute -top-5 left-0\">".concat(item.area, "\n        </div>\n        <div class=\"h-45 bg-no-repeat bg-cover bg-center rounded-t\"\n          style=\"background-image: url('").concat(item.imgUrl, "');\"></div>\n        <div class=\"relative text-primary pt-5 pb-4 px-5 flex flex-grow flex-col justify-between\">\n          <div class=\"absolute bg-primary text-white w-10 text-center rounded-r py-1 -top-4 left-0\">").concat(item.rate, "</div>\n          <div>\n            <h2 class=\"font-bold text-2xl pb-1 mb-4 border-b-2\">").concat(item.name, "</h2>\n            <p class=\"text-gray-500 mb-8 break-words\">").concat(item.description, "</p>\n          </div>\n          <div class=\"flex justify-between items-center\">\n            <p>\n              <i class=\"fas fa-exclamation-circle\"></i>\n              <span class=\"font-medium\">\u5269\u4E0B\u6700\u5F8C ").concat(item.group, " \u7D44</span>\n            </p>\n            <p class=\"font-medium flex items-center\">TWD<span class=\"text-4xl ml-1\">$").concat(item.price, "</span></p>\n          </div>\n        </div>\n      </li>");
+        str += addList(item);
       }
 
       ;
@@ -129,5 +128,10 @@ function areaFilter(e) {
   ;
 }
 
-;
+; // 組裝字串
+
+function addList(itemData) {
+  var str = "<li class=\"flex flex-col bg-white transform hover:scale-105 transition-all duration-700 ease-out rounded relative shadow\">\n        <div class=\"bg-secondary text-white text-xl rounded-r py-2 px-5 absolute -top-5 left-0\">".concat(itemData.area, "\n        </div>\n        <div class=\"h-45 bg-no-repeat bg-cover bg-center rounded-t\"\n          style=\"background-image: url('").concat(itemData.imgUrl, "');\"></div>\n        <div class=\"relative text-primary pt-5 pb-4 px-5 flex flex-grow flex-col justify-between\">\n          <div class=\"absolute bg-primary text-white w-10 text-center rounded-r py-1 -top-4 left-0\">").concat(itemData.rate, "</div>\n          <div>\n            <h2 class=\"font-bold text-2xl pb-1 mb-4 border-b-2\">").concat(itemData.name, "</h2>\n            <p class=\"text-gray-500 mb-8 break-words\">").concat(itemData.description, "</p>\n          </div>\n          <div class=\"flex justify-between items-center\">\n            <p>\n              <i class=\"fas fa-exclamation-circle\"></i>\n              <span class=\"font-medium\">\u5269\u4E0B\u6700\u5F8C ").concat(itemData.group, " \u7D44</span>\n            </p>\n            <p class=\"font-medium flex items-center\">TWD<span class=\"text-4xl ml-1\">$").concat(itemData.price, "</span></p>\n          </div>\n        </div>\n      </li>");
+  return str;
+}
 //# sourceMappingURL=all.js.map
