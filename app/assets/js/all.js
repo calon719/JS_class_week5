@@ -67,7 +67,6 @@ function checkInput(e) {
   addTicket(checkStatus);
 };
 
-// 新增套票
 // 新增資料到 物件 data
 // 將資料呈現到網頁畫面
 function addTicket(checkStatus) {
@@ -84,12 +83,11 @@ function addTicket(checkStatus) {
       item.value = '';
     });
     data.push(obj);
-    init();
+    areaFilter();
   } else {
     return;
   }
 };
-
 
 // 預設資料為 3 筆（內容需依照目前提供的 JSON data）
 // 網頁初始顯示
@@ -99,39 +97,21 @@ function init() {
 
   data.forEach(function (item) {
     resultNum++;
-    str += `<li class="flex flex-col bg-white transform hover:scale-105 transition-all duration-700 ease-out rounded relative shadow">
-        <div class="bg-secondary text-white text-xl rounded-r py-2 px-5 absolute -top-5 left-0">${item.area}
-        </div>
-        <div class="h-45 bg-no-repeat bg-cover bg-center rounded-t"
-          style="background-image: url('${item.imgUrl}');"></div>
-        <div class="relative text-primary pt-5 pb-4 px-5 flex flex-grow flex-col justify-between">
-          <div class="absolute bg-primary text-white w-10 text-center rounded-r py-1 -top-4 left-0">${item.rate}</div>
-          <div>
-            <h2 class="font-bold text-2xl pb-1 mb-4 border-b-2">${item.name}</h2>
-            <p class="text-gray-500 mb-8 break-words">${item.description}</p>
-          </div>
-          <div class="flex justify-between items-center">
-            <p>
-              <i class="fas fa-exclamation-circle"></i>
-              <span class="font-medium">剩下最後 ${item.group} 組</span>
-            </p>
-            <p class="font-medium flex items-center">TWD<span class="text-4xl ml-1">$${item.price}</span></p>
-          </div>
-        </div>
-      </li>`;
+    str += addList(item);
   });
 
   cardList.innerHTML = str;
   searchResultNum.textContent = resultNum;
+
 }
 init();
 
 // 篩選資料
 // 篩選後會顯示『搜尋資料為 ? 筆』
-function areaFilter(e) {
-  let inputValue = e.target.value;
+function areaFilter() {
+  let inputValue = searchAreaInput.value;
 
-  if (inputValue === '全部') {
+  if (inputValue === '' || inputValue === '全部') {
     init();
   } else {
     let str = '';
@@ -140,26 +120,7 @@ function areaFilter(e) {
     data.forEach(function (item) {
       if (item.area === inputValue) {
         resultNum++;
-        str += `<li class="flex flex-col bg-white transform hover:scale-105 transition-all duration-700 ease-out rounded relative shadow">
-        <div class="bg-secondary text-white text-xl rounded-r py-2 px-5 absolute -top-5 left-0">${item.area}
-        </div>
-        <div class="h-45 bg-no-repeat bg-cover bg-center rounded-t"
-          style="background-image: url('${item.imgUrl}');"></div>
-        <div class="relative text-primary pt-5 pb-4 px-5 flex flex-grow flex-col justify-between">
-          <div class="absolute bg-primary text-white w-10 text-center rounded-r py-1 -top-4 left-0">${item.rate}</div>
-          <div>
-            <h2 class="font-bold text-2xl pb-1 mb-4 border-b-2">${item.name}</h2>
-            <p class="text-gray-500 mb-8 break-words">${item.description}</p>
-          </div>
-          <div class="flex justify-between items-center">
-            <p>
-              <i class="fas fa-exclamation-circle"></i>
-              <span class="font-medium">剩下最後 ${item.group} 組</span>
-            </p>
-            <p class="font-medium flex items-center">TWD<span class="text-4xl ml-1">$${item.price}</span></p>
-          </div>
-        </div>
-      </li>`;
+        str += addList(item);
       };
     });
 
@@ -167,3 +128,28 @@ function areaFilter(e) {
     searchResultNum.textContent = resultNum;
   };
 };
+
+// 組裝字串
+function addList(itemData) {
+  let str = `<li class="flex flex-col bg-white transform hover:scale-105 transition-all duration-700 ease-out rounded relative shadow">
+        <div class="bg-secondary text-white text-xl rounded-r py-2 px-5 absolute -top-5 left-0">${itemData.area}
+        </div>
+        <div class="h-45 bg-no-repeat bg-cover bg-center rounded-t"
+          style="background-image: url('${itemData.imgUrl}');"></div>
+        <div class="relative text-primary pt-5 pb-4 px-5 flex flex-grow flex-col justify-between">
+          <div class="absolute bg-primary text-white w-10 text-center rounded-r py-1 -top-4 left-0">${itemData.rate}</div>
+          <div>
+            <h2 class="font-bold text-2xl pb-1 mb-4 border-b-2">${itemData.name}</h2>
+            <p class="text-gray-500 mb-8 break-words">${itemData.description}</p>
+          </div>
+          <div class="flex justify-between items-center">
+            <p>
+              <i class="fas fa-exclamation-circle"></i>
+              <span class="font-medium">剩下最後 ${itemData.group} 組</span>
+            </p>
+            <p class="font-medium flex items-center">TWD<span class="text-4xl ml-1">$${itemData.price}</span></p>
+          </div>
+        </div>
+      </li>`;
+  return str;
+}
