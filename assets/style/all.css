@@ -553,6 +553,8 @@ input::placeholder, textarea::placeholder {
 @media (min-width: 576px) {
   .container {
     max-width: 576px;
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 
